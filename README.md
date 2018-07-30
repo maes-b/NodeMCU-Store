@@ -25,7 +25,7 @@ Just set your WIFI SSIDs and Passwords in the file "Connectivity.h" at line 22
 
 ## 2 - Push firmware to your node MCU
 
-Just Compile and push firmware to your nodeMCU ship
+Just Compile and push firmware to your nodeMCU chip
 
 ## 3 - Connect relays and switches
 

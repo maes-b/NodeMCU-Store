@@ -1,0 +1,98 @@
+
+#include "Stores.h"
+
+
+String getValue(String data, char separator, int index){
+  int found = 0;
+  int strIndex[] = {0, -1};
+  int maxIndex = data.length()-1;
+
+  for(int i=0; i<=maxIndex && found<=index; i++){
+    if(data.charAt(i)==separator || i==maxIndex){
+        found++;
+        strIndex[0] = strIndex[1]+1;
+        strIndex[1] = (i == maxIndex) ? i+1 : i;
+    }
+  }
+
+  return found>index ? data.substring(strIndex[0], strIndex[1]) : "";
+}
+
+Store* Stores::getStores(){
+  return _stores;
+}
+
+Stores::Stores(Store store1, Store store2){
+	_stores[0]=store1;
+	_stores[1]=store2;
+}
+
+void Stores::setIpAdress(IPAddress ip){
+  for(int index=0;index<2;index++){
+    _stores[index].setIp(ip);
+  }
+}
+
+String Stores::toJsonString(){
+	DynamicJsonBuffer jsonBuffer(500);
+  JsonObject& jsonEncoder = jsonBuffer.createObject();
+  JsonArray& jsonStores = jsonEncoder.createNestedArray("stores");
+  for(int index=0;index<2;index++){
+  	JsonObject& jsonStore = jsonBuffer.createObject();
+   	jsonStore["id"]=_stores[index].getId();
+   	jsonStore["ipAdress"]=_stores[index].ipAdressToString();
+   	jsonStore["state"]=_stores[index].stateToString();
+   	jsonStore["room"]=_stores[index].getRoom();
+   	jsonStore["type"]=_stores[index].typeToString();
+  		
+  	jsonStores.add(jsonStore);
+  }
+
+  return jsonEncoder["stores"];
+}
+
+void Stores::doActionOnStores(Action action){
+	for(int index=0;index<2;index++){
+		_stores[index].doActionOnStore(action);
+	}
+}
+
+void Stores::doActionOnStore(int id,Action action){
+  _stores[id-1].doActionOnStore(action);
+}
+
+Action Stores::actionFromString(String action){
+  if(action=="OPEN"){
+    return O;
+  }else if(action=="CLOSE"){
+    return C;
+  }else{
+    return S;
+  }
+}
+
+int Stores::updateStore(int id,String ip,String state,String room,String type){
+  IPAddress addr;
+  if (addr.fromString(ip)) {
+    String part01 = getValue(ip,'.',0);
+    String part02 = getValue(ip,'.',1);
+    String part03 = getValue(ip,'.',2);
+    String part04 = getValue(ip,'.',3);
+    _stores[id].setIp(IPAddress(part01.toInt(),part02.toInt(),part03.toInt(),part04.toInt())); 
+  }else{
+    return 400;
+  }
+
+  if(_stores[id].stateToString()!=state){
+    _stores[id].setState(_stores[id].stateFromString(state));    
+  }
+      
+  if(_stores[id].getRoom()!=room){
+    _stores[id].setRoom(room);  
+  }
+
+  if(_stores[id].typeToString()!=type){
+    _stores[id].setType(_stores[id].typeFromString(type));  
+  }
+}
+

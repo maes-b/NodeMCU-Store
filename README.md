@@ -5,13 +5,13 @@ Control 2 Stores using the ESP8266 chip on NodeMCU
 # Used Materials
 
  - NodeMCU with ESP8266 Chip
-  ![NodeMCU](https://lh3.googleusercontent.com/uDWOs9wO_FhMBOA16CEyvQF6Uz1OdwqRAcuPnTRDpQ6dximdp8Cfl14gAjp_4OBgZnxLckgJZtAJ)
+  ![NodeMCU](https://photos.app.goo.gl/ekprfzfcLh7uRGU48)
 
  - 2 x Dual Channels 5V Relays 
- ![Dual Channels 5V Relays](https://lh3.googleusercontent.com/vtX5tiV4JiMRewIamdKTO7vJwWhB8fnt8dmw53WZvUFkorQIx9n6-d9qCeoNW19gXUrsvwl7mR_q)
+ ![Dual Channels 5V Relays](https://photos.app.goo.gl/yinAraVvASfY7No69)
  
  - 2 x microswitch 
-![MicroSwitch](https://lh3.googleusercontent.com/NkXL_XHidqQoCASYVPBLk1ChKYNsu7QWc_rlYx6Hlch8Xv9cnWcK0eWUFV6AN3zXDFGgt2oZL0Fz)
+![MicroSwitch](https://photos.app.goo.gl/c99boWD7Rt4LhNSC9)
 
 
 # How to use

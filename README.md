@@ -5,12 +5,15 @@ Control 2 Stores using the ESP8266 chip on NodeMCU
 # Used Materials
 
  - NodeMCU with ESP8266 Chip
-  ![NodeMCU](https://lh3.googleusercontent.com/OjmrEXp4pqTkyDDJsvaNHeD6rue5_fMiKTAmxfrZ9ddvz5TbRQf0LYJlXmWJZOKDWAuW3mdF2lfRPdPMXkYANaVAEzXJZFuYWnkrvdi85G23tPDl3EdynUSPICTRKoaZZD296-gbyA=w2400)
-
+ 
+ ![NodeMCU](https://lh3.googleusercontent.com/OjmrEXp4pqTkyDDJsvaNHeD6rue5_fMiKTAmxfrZ9ddvz5TbRQf0LYJlXmWJZOKDWAuW3mdF2lfRPdPMXkYANaVAEzXJZFuYWnkrvdi85G23tPDl3EdynUSPICTRKoaZZD296-gbyA=w2400)
+ 
  - 2 x Dual Channels 5V Relays 
- ![Dual Channels 5V Relays](https://lh3.googleusercontent.com/jQplh4g4A_EalNVIx69ULZxjdyOjp3Hqscu7Zir55UaHwIch_1yCRK5eGvhZ5fw2avCDmxdz4OIjabcBalEucf5SLqobBy2iV7jwEnlbVH9VFqo4YtNMcRWW2lCOkNYeyKmSukn0iw=s150-p-k)
+
+![Dual Channels 5V Relays](https://lh3.googleusercontent.com/jQplh4g4A_EalNVIx69ULZxjdyOjp3Hqscu7Zir55UaHwIch_1yCRK5eGvhZ5fw2avCDmxdz4OIjabcBalEucf5SLqobBy2iV7jwEnlbVH9VFqo4YtNMcRWW2lCOkNYeyKmSukn0iw=s150-p-k)
  
  - 2 x microswitch 
+
 ![MicroSwitch](https://lh3.googleusercontent.com/buBnuqHtO9A2mQy4RDfMcwMaQ_p0-O2ADUQToGA0SUH4iE0sInXRc3cjxCs6sWrQFbEQaGbHDMHrFVmxyT3TVGXVkssocDanVTPZsM7uJ_r-FBzXGPwKHGiuCiklE8sFV7yoYgHuJg=s100-p-k)
 
 

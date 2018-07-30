@@ -5,13 +5,13 @@ Control 2 Stores using the ESP8266 chip on NodeMCU
 # Used Materials
 
  - NodeMCU with ESP8266 Chip
-  ![NodeMCU](https://lh3.googleusercontent.com/uDWOs9wO_FhMBOA16CEyvQF6Uz1OdwqRAcuPnTRDpQ6dximdp8Cfl14gAjp_4OBgZnxLckgJZtAJ "NodeMCU" =170x150)
+  ![NodeMCU](https://lh3.googleusercontent.com/uDWOs9wO_FhMBOA16CEyvQF6Uz1OdwqRAcuPnTRDpQ6dximdp8Cfl14gAjp_4OBgZnxLckgJZtAJ)
 
  - 2 x Dual Channels 5V Relays 
- ![Dual Channels 5V Relays](https://lh3.googleusercontent.com/vtX5tiV4JiMRewIamdKTO7vJwWhB8fnt8dmw53WZvUFkorQIx9n6-d9qCeoNW19gXUrsvwl7mR_q "Dual Channel Relays" =150x150)
+ ![Dual Channels 5V Relays](https://lh3.googleusercontent.com/vtX5tiV4JiMRewIamdKTO7vJwWhB8fnt8dmw53WZvUFkorQIx9n6-d9qCeoNW19gXUrsvwl7mR_q)
  
  - 2 x microswitch 
-![MicroSwitch](https://lh3.googleusercontent.com/NkXL_XHidqQoCASYVPBLk1ChKYNsu7QWc_rlYx6Hlch8Xv9cnWcK0eWUFV6AN3zXDFGgt2oZL0Fz "MicroSwitch" =100x100)
+![MicroSwitch](https://lh3.googleusercontent.com/NkXL_XHidqQoCASYVPBLk1ChKYNsu7QWc_rlYx6Hlch8Xv9cnWcK0eWUFV6AN3zXDFGgt2oZL0Fz)
 
 
 # How to use

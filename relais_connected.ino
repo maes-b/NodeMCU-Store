@@ -1,7 +1,3 @@
-#include <ESP8266WebServer.h>
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
-#include <ArduinoJson.h>
 
 #define LED 16 /*LED PIN*/
 #define APPLICATION_JSON "application/json"
@@ -27,6 +23,7 @@ void setup() {
   digitalWrite(LED, HIGH);
   connectivity.setupWifi();
   connectivity.setupServer();
+  connectivity.setupStores();
 }
 
 void loop() {

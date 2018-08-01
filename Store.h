@@ -27,7 +27,7 @@ public:
 
 	int getId();
 	void setId(int id);
-	
+
 	IPAddress getIp();
 	void setIp(IPAddress ip);
 	
@@ -51,11 +51,11 @@ public:
 	void setType(Type type);
 
 	int doActionOnStore(Action action);
-  	String ipAdressToString();
-  	String stateToString();
-  	String typeToString();
-  	State stateFromString(String state);
-  	Type typeFromString(String type);
+  String ipAdressToString();
+  String stateToString();
+  String typeToString();
+  State stateFromString(String state);
+  Type typeFromString(String type);
 };
 
 #endif

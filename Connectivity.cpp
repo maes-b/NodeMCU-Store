@@ -1,48 +1,43 @@
 
-
 #include "Connectivity.h"
 
 Connectivity::Connectivity(){}
 
 void Connectivity::setupWifi(){
-	int nbNetworks = WiFi.scanNetworks();
-	String lastSsidTested ="";
-	for (int index = 0; index < nbNetworks;index++) {//iterate over available Networks
-		for (int connexion = 0; connexion<SIZEOF(_connexions);connexion++) {//iterate over known Network
-	    	if(WiFi.SSID(index) == (_connexions[connexion]).ssid){//if it's one of our network try connection
-		        Serial.print("Connecting to ");
-	        	Serial.print(WiFi.SSID(index));
-	        	lastSsidTested = (_connexions[connexion]).ssid;
-	        	WiFi.begin((_connexions[connexion]).ssid, (_connexions[connexion]).password);	        
-	        	break;
-	      	}
-	    }
-	}
-	
-	while (WiFi.status() != WL_CONNECTED) {
-		Serial.print(".");
-	    delay(500);
-	    digitalWrite(LED, LOW);
-	    delay(500);
-	    digitalWrite(LED, HIGH);
-	}
-	     
+  _connexions.addAP("ssid1", "pass1");   // add Wi-Fi networks you want to connect to
+  _connexions.addAP("ssid2", "pass2");
+  
+  Serial.println("Connecting ...");
+  while (_connexions.run() != WL_CONNECTED) { // Wait for the Wi-Fi to connect: scan for Wi-Fi networks, and connect to the strongest of the networks above
+      Serial.print(".");
+      delay(500);
+      digitalWrite(LED, LOW);
+      delay(500);
+      digitalWrite(LED, HIGH);
+  }
 	Serial.print("\nWiFi connected to ");
-	Serial.println(lastSsidTested);
+	Serial.println(WiFi.SSID());
 	Serial.print("IP address: ");
 	Serial.println(WiFi.localIP());
-	digitalWrite(LED, HIGH);
-	
 	_stores.setIpAdress(WiFi.localIP());
+  
+  digitalWrite(LED, HIGH);
 }
 
 void Connectivity::setupServer(){
-	_server.on("/reboot",HTTP_GET,std::bind(&Connectivity::reboot,this));
-  	_server.on("/store", HTTP_GET, std::bind(&Connectivity::handleActionOnStore,this));
-  	_server.on("/store",HTTP_POST,std::bind(&Connectivity::handleUpdateOnStore,this));
-  	_server.onNotFound(std::bind(&Connectivity::handleNotFound,this));
+  _server.on("/reboot",HTTP_GET,std::bind(&Connectivity::reboot,this));
+  _server.on("/store", HTTP_GET, std::bind(&Connectivity::handleActionOnStore,this));
+  _server.on("/store",HTTP_POST,std::bind(&Connectivity::handleUpdateOnStore,this));
+  _server.onNotFound(std::bind(&Connectivity::handleNotFound,this));
 
-  	_server.begin(); //Start the server
+  _server.begin(); //Start the server
+  
+}
+
+void Connectivity::setupStores(){
+  _stores.addStore(Store(1,WiFi.localIP(),4, 0,5, OPD, "1", WINDOW));
+  _stores.addStore(Store(2,WiFi.localIP(),14, 12,2, OPD, "2", WINDOW));
+  Serial.println("stores setup done");
 }
 
 void Connectivity::handleActionOnStore(){
@@ -75,12 +70,11 @@ void Connectivity::handleUpdateOnStore(){
 
 		int id = root["id"];
 		if(id==1 || id==2){
-			String ip = root["ipAdress"];
 			String state = root["state"];
 			String room = root["room"];
 			String type = root["type"];
 
-			int code = _stores.updateStore(id-1,ip,state,room,type);
+			int code = _stores.updateStore(id-1,state,room,type);
 		}else{
 			_server.send(409, APPLICATION_JSON,"{\"code\":\"409\",\"message\":\"Bad Request : Request body parameter {id} is not valid\"}" );		
 		}

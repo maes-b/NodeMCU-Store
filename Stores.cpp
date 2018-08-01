@@ -18,13 +18,18 @@ String getValue(String data, char separator, int index){
   return found>index ? data.substring(strIndex[0], strIndex[1]) : "";
 }
 
-Store* Stores::getStores(){
-  return _stores;
+Stores::Stores(){}
+
+void Stores::addStore(Store store){
+  if(store.getId()%2!=0){
+    _stores[0]=store;
+  }else{
+    _stores[1]=store;
+  }
 }
 
-Stores::Stores(Store store1, Store store2){
-	_stores[0]=store1;
-	_stores[1]=store2;
+Store* Stores::getStores(){
+  return _stores;
 }
 
 void Stores::setIpAdress(IPAddress ip){
@@ -32,7 +37,6 @@ void Stores::setIpAdress(IPAddress ip){
     _stores[index].setIp(ip);
   }
 }
-
 String Stores::toJsonString(){
 	DynamicJsonBuffer jsonBuffer(500);
   JsonObject& jsonEncoder = jsonBuffer.createObject();
@@ -71,18 +75,7 @@ Action Stores::actionFromString(String action){
   }
 }
 
-int Stores::updateStore(int id,String ip,String state,String room,String type){
-  IPAddress addr;
-  if (addr.fromString(ip)) {
-    String part01 = getValue(ip,'.',0);
-    String part02 = getValue(ip,'.',1);
-    String part03 = getValue(ip,'.',2);
-    String part04 = getValue(ip,'.',3);
-    _stores[id].setIp(IPAddress(part01.toInt(),part02.toInt(),part03.toInt(),part04.toInt())); 
-  }else{
-    return 400;
-  }
-
+int Stores::updateStore(int id,String state,String room,String type){
   if(_stores[id].stateToString()!=state){
     _stores[id].setState(_stores[id].stateFromString(state));    
   }

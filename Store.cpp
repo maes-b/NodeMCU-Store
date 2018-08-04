@@ -101,3 +101,18 @@ int Store::doActionOnStore(Action action){
 int Store::getSwitchState(){
   return digitalRead(_switch);
 }
+
+String Store::toJsonString(){
+  DynamicJsonBuffer jsonBuffer(500);
+  JsonObject& jsonStore = jsonBuffer.createObject();
+  jsonStore["id"]=getId();
+  jsonStore["ipAdress"]=ipAdressToString();
+  jsonStore["state"]=stateToString();
+  jsonStore["room"]=getRoom();
+  jsonStore["type"]=typeToString();
+
+  String json;
+  jsonStore.printTo(json);
+  return json;
+}
+

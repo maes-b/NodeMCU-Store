@@ -56,6 +56,7 @@ public:
   String typeToString();
   State stateFromString(String state);
   Type typeFromString(String type);
+  String toJsonString();
 };
 
 #endif

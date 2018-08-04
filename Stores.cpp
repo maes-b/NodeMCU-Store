@@ -2,7 +2,7 @@
 #include "Stores.h"
 
 
-String getValue(String data, char separator, int index){
+String Stores::splitString(String data, char separator, int index){
   int found = 0;
   int strIndex[] = {0, -1};
   int maxIndex = data.length()-1;
@@ -55,6 +55,27 @@ String Stores::toJsonString(){
   return jsonEncoder["stores"];
 }
 
+JsonArray& Stores::allInformationJson(){
+  DynamicJsonBuffer jsonBuffer(500);
+  JsonObject& jsonEncoder = jsonBuffer.createObject();
+  JsonArray& jsonStores = jsonEncoder.createNestedArray("stores");
+  for(int index=0;index<2;index++){
+    JsonObject& jsonStore = jsonBuffer.createObject();
+    jsonStore["id"]=_stores[index].getId();
+    jsonStore["ipAdress"]=_stores[index].ipAdressToString();
+    jsonStore["pinUp"]=_stores[index].getPinUp();
+    jsonStore["pinDown"]=_stores[index].getPinDown();
+    jsonStore["pinEor"]=_stores[index].getPinSwitch();
+    jsonStore["state"]=_stores[index].stateToString();
+    jsonStore["room"]=_stores[index].getRoom();
+    jsonStore["type"]=_stores[index].typeToString();
+      
+    jsonStores.add(jsonStore);
+  }
+
+  return jsonStores;
+}
+
 void Stores::doActionOnStores(Action action){
 	for(int index=0;index<2;index++){
 		_stores[index].doActionOnStore(action);
@@ -75,7 +96,22 @@ Action Stores::actionFromString(String action){
   }
 }
 
-int Stores::updateStore(int id,String state,String room,String type){
+int Stores::updateStore(int id,String ipString,String state,String room,String type){
+  IPAddress addr;
+  if (addr.fromString(ipString)) {
+    //check if String ip have format of IP addr
+    String part01 = splitString(ipString,'.',0);
+    String part02 = splitString(ipString,'.',1);
+    String part03 = splitString(ipString,'.',2);
+    String part04 = splitString(ipString,'.',3);    
+    IPAddress ip(part01.toInt(),part02.toInt(),part03.toInt(),part04.toInt());
+    Serial.print("Updated :");
+    Serial.println(ip);
+    setIpAdress(ip);
+  }else{
+    return 400;
+  }
+  
   if(_stores[id].stateToString()!=state){
     _stores[id].setState(_stores[id].stateFromString(state));    
   }
@@ -87,5 +123,6 @@ int Stores::updateStore(int id,String state,String room,String type){
   if(_stores[id].typeToString()!=type){
     _stores[id].setType(_stores[id].typeFromString(type));  
   }
+  return 200;
 }
 

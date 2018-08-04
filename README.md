@@ -21,7 +21,10 @@ Control 2 Stores using the ESP8266 chip on NodeMCU
 
 ## 1 - Setup wifi
 
-Just set your WIFI SSIDs and Passwords in the file "Connectivity.h" at line 22
+Just set your WIFI settings (SSIDs and Passwords) and set IP address in the file "Connectivity.h"
+
+NB: If you want to be notified that a store is closed using end-of-run switche you need a server to handle POST request from NodeMCU.
+ you need to set server address in SERVER_ADDR
 
 ## 2 - Push firmware to your node MCU
 

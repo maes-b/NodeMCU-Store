@@ -28,7 +28,7 @@ NB: If you want to be notified that a store is closed using end-of-run switche y
 
 ## 2 - Push firmware to your node MCU
 
-Just Compile and push firmware to your nodeMCU chip
+Just Compile and push firmware to your nodeMCU chip using Arduino IDE
 
 ## 3 - Connect relays and switches
 
